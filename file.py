@@ -20,7 +20,7 @@ maile = {'Tymek':'tymdyb@gmail.com',
 scopes = ['https://www.googleapis.com/auth/calendar']
 credentials = pickle.load(open('token.txt', "rb"))
 service = build("calendar", "v3", credentials=credentials )
-result = service.events().list(calendarId='sprawdzacz12@gmail.com').execute()
+result = service.events().list(calendarId='ekran.coek@gmail.com').execute()
 
 #initialize mail sending
 email_sender = 'sprawdzacz12@gmail.com'
@@ -42,32 +42,33 @@ def send_mail():
 today = datetime.today().strftime("%Y/%m/%d")
 today_day_of_week = datetime.today().strftime("%A")
 for i in result['items']:
-  start = i['start']['date']
-  end = i['end']['date']
+  try:
+    start = i['start']['date']
+    end = i['end']['date']
 
-  start = start.replace('-','/')
-  end = end.replace('-', '/')
+    start = start.replace('-','/')
+    end = end.replace('-', '/')
 
-  if today > start and today < end and today_day_of_week=='Tuesday':
-    print(i['summary'])
-    current_event = i
-    name = current_event['summary']
-    first = ''
-    second = ''
-    third = ''
-    name = name.split(' - ')
-    second = name[-2].split(',')[0]
-    first = name[0]
-    third = name[-1]
-    print(first+'\n' + second + '\n' + third)
-    
-    body +="\n" +current_event['summary'].replace(', ', '\n')
-    receivers = [maile[first], maile[second], maile[third]]
-    em['To'] = ", ".join(receivers)
-    print(body)
-    em.set_content(body)
-    send_mail()
-
+    if today > start and today < end and today_day_of_week=='Tuesday':
+      print(i['summary'])
+      current_event = i
+      name = current_event['summary']
+      first = ''
+      second = ''
+      third = ''
+      name = name.split(' - ')
+      second = name[-2].split(',')[0]
+      first = name[0]
+      third = name[-1]
+      print(first+'\n' + second + '\n' + third)
+      
+      body +="\n" +current_event['summary'].replace(', ', '\n')
+      receivers = [maile[first], maile[second], maile[third]]
+      em['To'] = ", ".join(receivers)
+      print(body)
+      em.set_content(body)
+      send_mail()
+  except: pass
 today = datetime.today().strftime("%Y/%m/%d")
 
 
