@@ -15,7 +15,7 @@ maile = {'Tymek':'tymdyb@gmail.com',
           'Maks':'ekran.coek@gmail.com',
           'Maciek':'tymekdybal@gmail.com'
 }
-
+#asldfkjaslfjkd
 #initialize calendar api
 scopes = ['https://www.googleapis.com/auth/calendar']
 credentials = pickle.load(open('token.txt', "rb"))
