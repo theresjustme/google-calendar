@@ -23,8 +23,8 @@ service = build("calendar", "v3", credentials=credentials )
 result = service.events().list(calendarId='ekran.coek@gmail.com').execute()
 
 #initialize mail sending
-email_sender = 'sprawdzacz12@gmail.com'
-email_password = 'demnykageifuhjln'
+email_sender = 'tymdyb@gmail.com'
+email_password = 'jmitjqzilihoulgb'
 subject = 'Wyświetlanie coek'
 body = "Hej, jesteś w grafiku na dzisiejszą niedzielę."
 em = EmailMessage()
@@ -49,7 +49,7 @@ for i in result['items']:
     start = start.replace('-','/')
     end = end.replace('-', '/')
 
-    if today > start and today < end and today_day_of_week=='Wednesday':
+    if today > start and today < end and today_day_of_week=='Thursday':
       print(i['summary'])
       current_event = i
       name = current_event['summary']
