@@ -40,7 +40,6 @@ def send_mail():
     smtp.send_message(em)
 
 today = datetime.today().strftime("%Y/%m/%d")
-today_day_of_week = datetime.today().strftime("%A")
 for i in result['items']:
   try:
     start = i['start']['date']
@@ -49,7 +48,7 @@ for i in result['items']:
     start = start.replace('-','/')
     end = end.replace('-', '/')
 
-    if today > start and today < end and today_day_of_week=='Thursday':
+    if today > start and today < end:
       print(i['summary'])
       current_event = i
       name = current_event['summary']
