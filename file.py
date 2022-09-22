@@ -49,7 +49,7 @@ for i in result['items']:
     start = start.replace('-','/')
     end = end.replace('-', '/')
 
-    if today > start and today < end and today_day_of_week=='Tuesday':
+    if today > start and today < end and today_day_of_week=='Wednesday':
       print(i['summary'])
       current_event = i
       name = current_event['summary']
