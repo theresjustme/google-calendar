@@ -54,15 +54,13 @@ for i in result['items']:
       name = current_event['summary']
       first = ''
       second = ''
-      third = ''
       name = name.split(' - ')
-      second = name[-2].split(',')[0]
+      second = name[-1]
       first = name[0]
-      third = name[-1]
-      print(first+'\n' + second + '\n' + third)
+      print(first+'\n' + second + '\n')
       
       body +="\n" +current_event['summary'].replace(', ', '\n')
-      receivers = [maile[first], maile[second], maile[third]]
+      receivers = [maile[first], maile[second]]
       em['To'] = ", ".join(receivers)
       print(body)
       em.set_content(body)
